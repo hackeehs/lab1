@@ -1,0 +1,68 @@
+nature = []      # Массив натуральных чисел
+integer = []   # Массив целых чисел
+raz = []        # Массив рациональных чисел
+vesh = []       # Массив вещественных чисел
+complex = []   # Массив комплексных чисел
+chet = []       # Массив чётных чисел
+nechet = []     # Массив нечётных чисел
+simple = []      # Массив простых чисел
+float = []     # Массив дробных чисел
+
+# Ввод чисел
+number = input()
+number = number.replace(',','') 
+number = number.split()
+
+#Распределим числа на три основные группы
+for i in range(len(number)):
+    if number[i] == 'pi' or number[i] == 'e':
+        vesh.append(number[i]) # Математические константы относятся к вещественным числам
+    elif complex(number[i]).imag == 0 and complex(number[i]).real % 1 == 0:
+        integer.append(int(number[i])) # Целые числа не имеют мнимой части и делятся на 1 без остатка
+    elif complex(number[i]).imag == 0:
+        float.append(float(number[i])) # Дробные числа не имеют мнимой части
+    else:
+        complex.append(complex(number[i])) # Остаются комплексные числа
+        
+#Распределение целых чисел на группы
+for i in range(len(integers)):
+    if integer[i] > 0:
+        nature.append(integers[i]) # Натуральные числа больше нуля
+    if integers[i] % 2 == 0:
+        chet.append(integer[i]) # Чётные числа
+    else:
+        nechet.append(integer[i]) # Нечётные числа
+        
+# Поиск простых чисел
+for i in range(len(nature)):
+    for j in range(2, nature[i]):
+        if nature[i] > 1 and nature[i] % j == 0:
+            break
+    else:
+          simple.append(nature[i])
+    
+# К рациональным относятся все целые и дробные числа, кроме бесконечных дробей
+raz.extend(integer)
+raz.extend(float)
+
+# К вещественным числам относятся все рациональные, а также бесконечные дроби
+# С клавиатуры можно ввести лишь константы, которые были добавлены в массив ранее
+vesh.extend(raz)
+
+# Сортировка 
+nature.sort()
+integer.sort()
+raz.sort()
+chet.sort()
+nechet.sort()
+simple.sort()
+
+# Вывод
+print("Натуральные числа: ", nature)
+print("Целые числа: ", integer)
+print("Рациональные числа: ", raz)
+print("Вещественные числа: ", vesh)
+print("Комплексные числа: ", complex)
+print("Чётные числа: ", chet)
+print("Нечётные числа: ", nechet)
+print("Простые числа: ", simple)
